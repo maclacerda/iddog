@@ -30,6 +30,12 @@ class LoginServices: ServicesBase {
     let url = self.makeURL(.login)
     let params: [String: Any] = [ParamKeys.email.rawValue: email]
     
+    // Add date decoder strategy
+    let dateFormatter = DateFormatter()
+
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    decoder.dateDecodingStrategy = .formatted(dateFormatter)
+    
     Alamofire.request(url, method: .post, parameters: params, encoding: encoder, headers: headers).responseDecodableObject(keyPath: "user", decoder: decoder) { (response: DataResponse<User>) in
 
       switch response.result {
@@ -49,7 +55,7 @@ class LoginServices: ServicesBase {
   internal func performMockLogin(_ email: String, shouldBeFail: Bool = false, handler: @escaping LoginServicesCallback) {
     if !shouldBeFail {
       let userToken = "ABCDEFG"
-      let user = User(token: userToken)
+      let user = User(id: "1", token: userToken, createdAt: Date())
 
       handler(.success(user))
     } else {

@@ -14,6 +14,7 @@ class ApplicationCoordinator {
   let rootViewController: UINavigationController
   
   fileprivate let loginCoordinator: LoginCoordinator
+  fileprivate let feedCoordinator: FeedCoordinator
   
   init(window: UIWindow) {
     self.window = window
@@ -23,12 +24,22 @@ class ApplicationCoordinator {
       rootViewController.navigationBar.prefersLargeTitles = true
     }
     
+    // Try restore previous user session
+    ApplicationSession.loadSession()
+    
     // Start login flow
     loginCoordinator = LoginCoordinator(presenter: rootViewController)
+    
+    // Start feed flow
+    feedCoordinator = FeedCoordinator(presenter: rootViewController)
   }
   
   fileprivate func loginFlow() {
     loginCoordinator.start()
+  }
+
+  fileprivate func feedFlow() {
+    feedCoordinator.start()
   }
   
 }
@@ -39,8 +50,14 @@ extension ApplicationCoordinator: Coordinator {
     window.rootViewController = rootViewController
     window.makeKeyAndVisible()
     
-    // Show the login screen
-    self.loginFlow()
+    // Check if user has a valid session
+    if ApplicationSession.isValideSession() {
+      // Show the feed screen
+      self.feedFlow()
+    } else {
+      // Show the login screen
+      self.loginFlow()
+    }
   }
   
 }

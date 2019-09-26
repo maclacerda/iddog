@@ -95,5 +95,27 @@ class IDDogTests: XCTestCase {
     
     XCTAssertEqual(result, expectedResult, "The revealed string not match to `\(expectedResult)`")
   }
+  
+  // MARK: - Extensions tests
+  
+  func testValidDiffBetweenTwoDatesShouldSucess() {
+    let now = Date()
+    let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: now)!
+    let diff = tomorrow.diffDays(now)
+    
+    XCTAssertEqual(diff, 1)
+  }
+  
+  func testTrimmedStringShouldSucess() {
+    let text = ""
+
+    XCTAssertTrue(text.trim().isEmpty)
+  }
+  
+  func testValidEmailShouldFail() {
+    let invalidEmail = "bla@@bla.com"
+    
+    XCTAssertFalse(invalidEmail.isValidEmail())
+  }
 
 }

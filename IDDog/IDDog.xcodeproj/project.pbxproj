@@ -89,6 +89,10 @@
 		0F5A7DD9233D078300C6465E /* FeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F5A7DD5233D078300C6465E /* FeedCollectionViewCell.xib */; };
 		0F85B9D1233D240900A94CFE /* ExpandedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85B9D0233D240900A94CFE /* ExpandedImageView.swift */; };
 		0F85B9D2233D240900A94CFE /* ExpandedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85B9D0233D240900A94CFE /* ExpandedImageView.swift */; };
+		0F85B9D4233D2E9900A94CFE /* KeychainSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F85B9D3233D2E9900A94CFE /* KeychainSwift.framework */; };
+		0F85B9D5233D2E9900A94CFE /* KeychainSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F85B9D3233D2E9900A94CFE /* KeychainSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0F85B9D7233D7E5E00A94CFE /* Date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85B9D6233D7E5E00A94CFE /* Date+extensions.swift */; };
+		0F85B9D8233D7E5E00A94CFE /* Date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85B9D6233D7E5E00A94CFE /* Date+extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +112,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0F85B9D5233D2E9900A94CFE /* KeychainSwift.framework in Embed Frameworks */,
 				0F2E7B4B233BA54500FBD3D3 /* Kingfisher.framework in Embed Frameworks */,
 				0F2E7B4D233BA54500FBD3D3 /* Alamofire.framework in Embed Frameworks */,
 				0F2E7B49233BA54500FBD3D3 /* CodableAlamofire.framework in Embed Frameworks */,
@@ -165,6 +170,8 @@
 		0F5A7DD4233D078300C6465E /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		0F5A7DD5233D078300C6465E /* FeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCollectionViewCell.xib; sourceTree = "<group>"; };
 		0F85B9D0233D240900A94CFE /* ExpandedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedImageView.swift; sourceTree = "<group>"; };
+		0F85B9D3233D2E9900A94CFE /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
+		0F85B9D6233D7E5E00A94CFE /* Date+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F85B9D4233D2E9900A94CFE /* KeychainSwift.framework in Frameworks */,
 				0F2E7B4A233BA54500FBD3D3 /* Kingfisher.framework in Frameworks */,
 				0F2E7B4C233BA54500FBD3D3 /* Alamofire.framework in Frameworks */,
 				0F2E7B48233BA54500FBD3D3 /* CodableAlamofire.framework in Frameworks */,
@@ -258,6 +266,7 @@
 		0F2E7B44233BA54500FBD3D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0F85B9D3233D2E9900A94CFE /* KeychainSwift.framework */,
 				0F2E7B47233BA54500FBD3D3 /* Alamofire.framework */,
 				0F2E7B45233BA54500FBD3D3 /* CodableAlamofire.framework */,
 				0F2E7B46233BA54500FBD3D3 /* Kingfisher.framework */,
@@ -280,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				0F2E7B56233BA6C800FBD3D3 /* String+extensions.swift */,
+				0F85B9D6233D7E5E00A94CFE /* Date+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -616,6 +626,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CodableAlamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KeychainSwift.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
@@ -636,6 +647,7 @@
 				0F5A7D94233C303E00C6465E /* ServiceError.swift in Sources */,
 				0F2E7B94233BAA8400FBD3D3 /* Obfuscator.swift in Sources */,
 				0F5A7DC2233CE2AF00C6465E /* FeedDatasource.swift in Sources */,
+				0F85B9D7233D7E5E00A94CFE /* Date+extensions.swift in Sources */,
 				0F2E7B7F233BA90A00FBD3D3 /* APIOperations.swift in Sources */,
 				0F5A7DBE233CDAA500C6465E /* FeedServices.swift in Sources */,
 				0F5A7DD6233D078300C6465E /* FeedCollectionViewCell.swift in Sources */,
@@ -671,6 +683,7 @@
 				0F5A7D95233C303E00C6465E /* ServiceError.swift in Sources */,
 				0F2E7B95233BAA8400FBD3D3 /* Obfuscator.swift in Sources */,
 				0F5A7DC3233CE2AF00C6465E /* FeedDatasource.swift in Sources */,
+				0F85B9D8233D7E5E00A94CFE /* Date+extensions.swift in Sources */,
 				0F2E7B80233BA90A00FBD3D3 /* APIOperations.swift in Sources */,
 				0F5A7DBF233CDAA500C6465E /* FeedServices.swift in Sources */,
 				0F5A7DD7233D078300C6465E /* FeedCollectionViewCell.swift in Sources */,

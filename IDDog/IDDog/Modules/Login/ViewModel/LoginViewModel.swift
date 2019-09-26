@@ -43,6 +43,7 @@ struct LoginViewModel {
     
     // Store the user credentials in "Session Model"
     ApplicationSession.loggedUser = user
+    ApplicationSession.saveSession()
 
     // Notify the screen
     delegate.signInSuccess()

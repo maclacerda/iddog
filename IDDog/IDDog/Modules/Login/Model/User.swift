@@ -8,12 +8,31 @@
 
 import Foundation
 
-struct User: Decodable {
+struct User: Codable {
   
+  let id: String
   let token: String
+  let createdAt: Date
   
   fileprivate enum CodingKeys: String, CodingKey {
+    case id = "_id"
     case token
+    case createdAt
+  }
+  
+}
+
+
+extension User {
+  
+  func toJSON() -> String {
+    let encoder = JSONEncoder()
+    
+    guard let data = try? encoder.encode(self), let json = String(data: data, encoding: .utf8) else {
+      return ""
+    }
+
+    return json
   }
   
 }

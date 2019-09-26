@@ -1,3 +1,4 @@
 github "Alamofire/Alamofire"
 github "Otbivnoe/CodableAlamofire"
 github "onevcat/Kingfisher" ~> 5.0
+github "evgenyneu/keychain-swift" ~> 16.0
