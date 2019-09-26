@@ -10,25 +10,79 @@ import XCTest
 @testable import IDDog
 
 class IDDogTests: XCTestCase {
+  
+  private let timeout: TimeInterval = 3.0
+  private var viewModelExpectation: XCTestExpectation!
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+  override func setUp() {}
+  override func tearDown() {}
+
+  func testSignInUserShouldBeSucess() {
+    let email = "markos.lacerda@gmail.com"
+    let expectation = XCTestExpectation(description: "Sign in should be sucess")
+
+    LoginServices.shared.performLogin(email) { result in
+      if case .success(let user) = result {
+        XCTAssertNotNil(user)
+      } else {
+        XCTFail()
+      }
+
+      expectation.fulfill()
+    }
+    
+    wait(for: [expectation], timeout: timeout)
+  }
+  
+  func testSignInShouldBeFail() {
+    let email = "blablabla"
+    let expectation = XCTestExpectation(description: "Sign in should be fail")
+    
+    LoginServices.shared.performLogin(email) { result in
+      if case .error(let message) = result {
+        XCTAssertEqual(message, "Email is not valid")
+      } else {
+        XCTFail()
+      }
+      
+      expectation.fulfill()
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    wait(for: [expectation], timeout: timeout)
+  }
+  
+  func testViewModelPerformLoginShouldSuccess() {
+    let email = "markos.lacerda@gmail.com"
+    let viewModel = LoginViewModel(with: self)
+    viewModelExpectation = XCTestExpectation(description: "Sign in with viewModel should be sucess")
+    
+    viewModel.performLogin(email)
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    wait(for: [viewModelExpectation], timeout: timeout)
+  }
+  
+  func testViewModelPerfomLoginShouldFail() {
+    let email = "blalbabla"
+    let viewModel = LoginViewModel(with: self)
+    viewModelExpectation = XCTestExpectation(description: "Sign in with viewModel should be fail")
+    
+    viewModel.performLogin(email)
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+    wait(for: [viewModelExpectation], timeout: timeout)
+  }
 
+}
+
+extension IDDogTests: LoginViewModelDelegate {
+  
+  func signInSuccess() {
+    print("ViewModel login success")
+    viewModelExpectation.fulfill()
+  }
+  
+  func signInError(_ error: String) {
+    print("ViewModel login failure: \(error)")
+    viewModelExpectation.fulfill()
+  }
+  
 }

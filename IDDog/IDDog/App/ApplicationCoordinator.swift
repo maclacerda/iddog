@@ -13,6 +13,8 @@ class ApplicationCoordinator {
   let window: UIWindow
   let rootViewController: UINavigationController
   
+  fileprivate let loginCoordinator: LoginCoordinator
+  
   init(window: UIWindow) {
     self.window = window
     rootViewController = UINavigationController()
@@ -21,14 +23,12 @@ class ApplicationCoordinator {
       rootViewController.navigationBar.prefersLargeTitles = true
     }
     
-    // Define the flow executed
-    self.loginFlow()
+    // Start login flow
+    loginCoordinator = LoginCoordinator(presenter: rootViewController)
   }
   
   fileprivate func loginFlow() {
-    let vc = UIViewController()
-    vc.view.backgroundColor = .white
-    rootViewController.pushViewController(vc, animated: false)
+    loginCoordinator.start()
   }
   
 }
@@ -38,6 +38,9 @@ extension ApplicationCoordinator: Coordinator {
   func start() {
     window.rootViewController = rootViewController
     window.makeKeyAndVisible()
+    
+    // Show the login screen
+    self.loginFlow()
   }
   
 }
