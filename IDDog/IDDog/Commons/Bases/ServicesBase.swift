@@ -23,6 +23,10 @@ internal class ServicesBase: NSObject {
   internal let decoder = JSONDecoder()
 
   // MARK: - Commom methods
+  
+  func appendAuthorizationHeaders() {
+    headers["Authorization"] = ApplicationSession.loggedUser.token
+  }
 
   func parseError(_ response: Data?, error: Error) -> String {
     if error._code == NSURLErrorTimedOut {

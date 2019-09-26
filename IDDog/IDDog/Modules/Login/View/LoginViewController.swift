@@ -25,6 +25,10 @@ class LoginViewController: BaseViewController {
   
   fileprivate var viewModel: LoginViewModel!
   
+  // MARK: - Public properties
+  
+  weak var delegate: LoginCoordinatorDelegate?
+  
   // MARK: - Initializers
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -114,7 +118,12 @@ extension LoginViewController: LoginViewModelDelegate {
   
   func signInSuccess() {
     self.state = .normal
-    print("Success")
+
+    guard let delegate = self.delegate else {
+      fatalError("LoginCoordinatorDelegate not assigned yet")
+    }
+
+    delegate.goToFeed()
   }
   
   func signInError(_ error: String) {

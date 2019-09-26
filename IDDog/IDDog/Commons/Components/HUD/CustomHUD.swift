@@ -40,6 +40,7 @@ class CustomHUD: UIView {
 
     if #available(iOS 13.0, *) {
       indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+      indicator.color = .white
     } else {
       indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
     }

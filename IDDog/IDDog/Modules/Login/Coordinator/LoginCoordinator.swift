@@ -8,11 +8,15 @@
 
 import UIKit
 
+protocol LoginCoordinatorDelegate: class {
+  func goToFeed()
+}
+
 class LoginCoordinator {
   
   private let presenter: UINavigationController
   private var loginController: LoginViewController
-  
+
   init(presenter: UINavigationController) {
     self.presenter = presenter
     self.loginController = LoginViewController()
@@ -24,8 +28,18 @@ extension LoginCoordinator: Coordinator {
   
   func start() {
     loginController.title = "login".localized()
+    loginController.delegate = self
     
     presenter.pushViewController(loginController, animated: true)
+  }
+  
+}
+
+extension LoginCoordinator: LoginCoordinatorDelegate {
+  
+  func goToFeed() {
+    let feedCoordinator = FeedCoordinator(presenter: presenter)
+    feedCoordinator.start()
   }
   
 }

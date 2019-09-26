@@ -43,5 +43,18 @@ class LoginServices: ServicesBase {
 
     }
   }
+  
+  // MARK: - Tests methods
+  
+  internal func performMockLogin(_ email: String, shouldBeFail: Bool = false, handler: @escaping LoginServicesCallback) {
+    if !shouldBeFail {
+      let userToken = "ABCDEFG"
+      let user = User(token: userToken)
+
+      handler(.success(user))
+    } else {
+      handler(.error("Email is not valid"))
+    }
+  }
 
 }

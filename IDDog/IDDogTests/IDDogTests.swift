@@ -17,11 +17,13 @@ class IDDogTests: XCTestCase {
   override func setUp() {}
   override func tearDown() {}
 
+  // MARK: - Login tests
+
   func testSignInUserShouldBeSucess() {
     let email = "markos.lacerda@gmail.com"
     let expectation = XCTestExpectation(description: "Sign in should be sucess")
 
-    LoginServices.shared.performLogin(email) { result in
+    LoginServices.shared.performMockLogin(email) { result in
       if case .success(let user) = result {
         XCTAssertNotNil(user)
       } else {
@@ -38,7 +40,7 @@ class IDDogTests: XCTestCase {
     let email = "blablabla"
     let expectation = XCTestExpectation(description: "Sign in should be fail")
     
-    LoginServices.shared.performLogin(email) { result in
+    LoginServices.shared.performMockLogin(email, shouldBeFail: true) { result in
       if case .error(let message) = result {
         XCTAssertEqual(message, "Email is not valid")
       } else {
@@ -51,38 +53,47 @@ class IDDogTests: XCTestCase {
     wait(for: [expectation], timeout: timeout)
   }
   
-  func testViewModelPerformLoginShouldSuccess() {
-    let email = "markos.lacerda@gmail.com"
-    let viewModel = LoginViewModel(with: self)
-    viewModelExpectation = XCTestExpectation(description: "Sign in with viewModel should be sucess")
+  // MARK: - Feed tests
+  
+  func testLoadFeedWithCategorieHuskyShouldBeSuccess() {
+    let expectation = XCTestExpectation(description: "Load 'husky' photos sucess")
     
-    viewModel.performLogin(email)
+    FeedServices.shared.fetchMockFeed(.husky) { result in
+      if case .success(let pets) = result {
+        XCTAssertNotNil(pets)
+      } else {
+        XCTFail()
+      }
 
-    wait(for: [viewModelExpectation], timeout: timeout)
-  }
-  
-  func testViewModelPerfomLoginShouldFail() {
-    let email = "blalbabla"
-    let viewModel = LoginViewModel(with: self)
-    viewModelExpectation = XCTestExpectation(description: "Sign in with viewModel should be fail")
+      expectation.fulfill()
+    }
     
-    viewModel.performLogin(email)
-
-    wait(for: [viewModelExpectation], timeout: timeout)
-  }
-
-}
-
-extension IDDogTests: LoginViewModelDelegate {
-  
-  func signInSuccess() {
-    print("ViewModel login success")
-    viewModelExpectation.fulfill()
+    wait(for: [expectation], timeout: timeout)
   }
   
-  func signInError(_ error: String) {
-    print("ViewModel login failure: \(error)")
-    viewModelExpectation.fulfill()
+  func testLoadFeedWithCategorieLabradorShouldBeFail() {
+    let expectation = XCTestExpectation(description: "Load 'labrador' photos fail")
+    
+    FeedServices.shared.fetchMockFeed(.labrador, shouldBeFail: true) { result in
+      if case .error(let error) = result {
+        XCTAssertEqual(error, "Feed not avaliable now")
+      } else {
+        XCTFail()
+      }
+
+      expectation.fulfill()
+    }
+    
+    wait(for: [expectation], timeout: timeout)
   }
   
+  // MARK: - Security tests
+  
+  func testSecurityManagerRevealShouldBeSuccess() {
+    let expectedResult = "https://api-iddog.idwall.co"
+    let result = SecurityManager.shared.reveal(Constants.kBaseURL)
+    
+    XCTAssertEqual(result, expectedResult, "The revealed string not match to `\(expectedResult)`")
+  }
+
 }

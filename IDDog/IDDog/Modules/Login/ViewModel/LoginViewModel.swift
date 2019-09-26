@@ -33,7 +33,7 @@ struct LoginViewModel {
       }
     }
   }
-  
+
   // MARK: - Private methods
   
   fileprivate func success(_ user: User) {
