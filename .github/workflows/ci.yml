@@ -9,7 +9,7 @@ jobs:
     runs-on: macOS-latest
     strategy:
         matrix:
-          destination: ['platform=iOS Simulator, id=4A75EA12-FD8F-4936-9E1F-610A2C871BD5,OS=12.4,name=iPhone X']
+          destination: ['platform=iOS Simulator,OS=12.4,name=iPhone X']
     steps:
       - name: Checkout
         uses: actions/checkout@master
