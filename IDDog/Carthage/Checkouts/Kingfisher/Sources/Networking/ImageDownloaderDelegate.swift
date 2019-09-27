@@ -81,7 +81,7 @@ public protocol ImageDownloaderDelegate: AnyObject {
     ///
     func imageDownloader(
         _ downloader: ImageDownloader,
-        didDownload image: KFCrossPlatformImage,
+        didDownload image: Image,
         for url: URL,
         with response: URLResponse?)
 
@@ -114,7 +114,7 @@ extension ImageDownloaderDelegate {
 
     public func imageDownloader(
         _ downloader: ImageDownloader,
-        didDownload image: KFCrossPlatformImage,
+        didDownload image: Image,
         for url: URL,
         with response: URLResponse?) {}
 

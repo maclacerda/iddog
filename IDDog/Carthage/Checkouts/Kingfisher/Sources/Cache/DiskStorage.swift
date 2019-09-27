@@ -119,16 +119,11 @@ public enum DiskStorage {
             config.fileManager.createFile(atPath: fileURL.path, contents: data, attributes: attributes)
         }
 
-        func value(forKey key: String, extendingExpiration: ExpirationExtending = .cacheTime) throws -> T? {
-            return try value(forKey: key, referenceDate: Date(), actuallyLoad: true, extendingExpiration: extendingExpiration)
+        func value(forKey key: String) throws -> T? {
+            return try value(forKey: key, referenceDate: Date(), actuallyLoad: true)
         }
 
-        func value(
-            forKey key: String,
-            referenceDate: Date,
-            actuallyLoad: Bool,
-            extendingExpiration: ExpirationExtending) throws -> T?
-        {
+        func value(forKey key: String, referenceDate: Date, actuallyLoad: Bool) throws -> T? {
             let fileManager = config.fileManager
             let fileURL = cacheFileURL(forKey: key)
             let filePath = fileURL.path
@@ -153,7 +148,7 @@ public enum DiskStorage {
             do {
                 let data = try Data(contentsOf: fileURL)
                 let obj = try T.fromData(data)
-                metaChangingQueue.async { meta.extendExpiration(with: fileManager, extendingExpiration: extendingExpiration) }
+                metaChangingQueue.async { meta.extendExpiration(with: fileManager) }
                 return obj
             } catch {
                 throw KingfisherError.cacheError(reason: .cannotLoadDataFromDisk(url: fileURL, error: error))
@@ -166,7 +161,7 @@ public enum DiskStorage {
 
         func isCached(forKey key: String, referenceDate: Date) -> Bool {
             do {
-                guard let _ = try value(forKey: key, referenceDate: referenceDate, actuallyLoad: false, extendingExpiration: .none) else {
+                guard let _ = try value(forKey: key, referenceDate: referenceDate, actuallyLoad: false) else {
                     return false
                 }
                 return true
@@ -409,32 +404,19 @@ extension DiskStorage {
             return estimatedExpirationDate?.isPast(referenceDate: referenceDate) ?? true
         }
         
-        func extendExpiration(with fileManager: FileManager, extendingExpiration: ExpirationExtending) {
+        func extendExpiration(with fileManager: FileManager) {
             guard let lastAccessDate = lastAccessDate,
                   let lastEstimatedExpiration = estimatedExpirationDate else
             {
                 return
             }
-
-            let attributes: [FileAttributeKey : Any]
-
-            switch extendingExpiration {
-            case .none:
-                // not extending expiration time here
-                return
-            case .cacheTime:
-                let originalExpiration: StorageExpiration =
-                    .seconds(lastEstimatedExpiration.timeIntervalSince(lastAccessDate))
-                attributes = [
-                    .creationDate: Date().fileAttributeDate,
-                    .modificationDate: originalExpiration.estimatedExpirationSinceNow.fileAttributeDate
-                ]
-            case .expirationTime(let expirationTime):
-                attributes = [
-                    .creationDate: Date().fileAttributeDate,
-                    .modificationDate: expirationTime.estimatedExpirationSinceNow.fileAttributeDate
-                ]
-            }
+            
+            let originalExpiration: StorageExpiration =
+                .seconds(lastEstimatedExpiration.timeIntervalSince(lastAccessDate))
+            let attributes: [FileAttributeKey : Any] = [
+                .creationDate: Date().fileAttributeDate,
+                .modificationDate: originalExpiration.estimatedExpirationSinceNow.fileAttributeDate
+            ]
 
             try? fileManager.setAttributes(attributes, ofItemAtPath: url.path)
         }

@@ -117,5 +117,20 @@ class IDDogTests: XCTestCase {
     
     XCTAssertFalse(invalidEmail.isValidEmail())
   }
+  
+  func testValidateUserDefaultsKeyNotExistsShouldSucess() {
+    let key = "keyExists"
+    
+    XCTAssertNil(UserDefaults.read(key: key))
+  }
+  
+  // MARK: - Security tests
+  
+  func testCheckGenerateSaltShouldSucess() {
+    let genereatedSalt: [UInt8] = Obfuscator.generateSalt(with: "IDWall-Challenge@2019")
+    let expectedSalt: [UInt8] = [73, 68, 87, 97, 108, 108, 45, 67, 104, 97, 108, 108, 101, 110, 103, 101, 64, 50, 48, 49, 57]
+    
+    XCTAssertEqual(genereatedSalt, expectedSalt)
+  }
 
 }

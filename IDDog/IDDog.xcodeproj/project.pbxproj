@@ -93,6 +93,8 @@
 		0F85B9D5233D2E9900A94CFE /* KeychainSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F85B9D3233D2E9900A94CFE /* KeychainSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0F85B9D7233D7E5E00A94CFE /* Date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85B9D6233D7E5E00A94CFE /* Date+extensions.swift */; };
 		0F85B9D8233D7E5E00A94CFE /* Date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85B9D6233D7E5E00A94CFE /* Date+extensions.swift */; };
+		0F85B9DA233E317D00A94CFE /* UserDefaults+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85B9D9233E317D00A94CFE /* UserDefaults+extensions.swift */; };
+		0F85B9DB233E317D00A94CFE /* UserDefaults+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85B9D9233E317D00A94CFE /* UserDefaults+extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +174,7 @@
 		0F85B9D0233D240900A94CFE /* ExpandedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedImageView.swift; sourceTree = "<group>"; };
 		0F85B9D3233D2E9900A94CFE /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
 		0F85B9D6233D7E5E00A94CFE /* Date+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extensions.swift"; sourceTree = "<group>"; };
+		0F85B9D9233E317D00A94CFE /* UserDefaults+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +293,7 @@
 			children = (
 				0F2E7B56233BA6C800FBD3D3 /* String+extensions.swift */,
 				0F85B9D6233D7E5E00A94CFE /* Date+extensions.swift */,
+				0F85B9D9233E317D00A94CFE /* UserDefaults+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -660,6 +664,7 @@
 				0F2E7B39233BA05F00FBD3D3 /* Coordinator.swift in Sources */,
 				0F5A7DAF233CD9A700C6465E /* FeedCoordinator.swift in Sources */,
 				0F2E7BAD233BC11100FBD3D3 /* CustomHUD.swift in Sources */,
+				0F85B9DA233E317D00A94CFE /* UserDefaults+extensions.swift in Sources */,
 				0F2E7B52233BA5B300FBD3D3 /* BaseViewController.swift in Sources */,
 				0F2E7B6E233BA7FB00FBD3D3 /* User.swift in Sources */,
 				0F85B9D1233D240900A94CFE /* ExpandedImageView.swift in Sources */,
@@ -696,6 +701,7 @@
 				0F2E7B3A233BA05F00FBD3D3 /* Coordinator.swift in Sources */,
 				0F5A7DB0233CD9A700C6465E /* FeedCoordinator.swift in Sources */,
 				0F2E7BAE233BC11100FBD3D3 /* CustomHUD.swift in Sources */,
+				0F85B9DB233E317D00A94CFE /* UserDefaults+extensions.swift in Sources */,
 				0F2E7B53233BA5B300FBD3D3 /* BaseViewController.swift in Sources */,
 				0F2E7B6F233BA7FB00FBD3D3 /* User.swift in Sources */,
 				0F85B9D2233D240900A94CFE /* ExpandedImageView.swift in Sources */,

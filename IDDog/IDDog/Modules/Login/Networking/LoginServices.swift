@@ -55,7 +55,7 @@ class LoginServices: ServicesBase {
   internal func performMockLogin(_ email: String, shouldBeFail: Bool = false, handler: @escaping LoginServicesCallback) {
     if !shouldBeFail {
       let userToken = "ABCDEFG"
-      let user = User(id: "1", token: userToken, createdAt: Date())
+      let user = User(id: "1", token: userToken, lastRefresh: Date())
 
       handler(.success(user))
     } else {

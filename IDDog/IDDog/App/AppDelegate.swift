@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Initialize window
     initWindow()
     
+    // Check if app re-instaled to clear keychain stored data
+    clearKeychainIfNecessary()
+    
     // Initialize main coordinator
     initCoordinator()
     
@@ -36,6 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillTerminate(_ application: UIApplication) {}
 
   // MARK: - Private methods
+  
+  fileprivate func clearKeychainIfNecessary() {
+    if UserDefaults.read(key: "hasRunBefore") == nil {
+      ApplicationSession.clearSession()
+      UserDefaults.write(value: true, in: "hasRunBefore")
+    }
+  }
   
   fileprivate func initWindow() {
     let window = UIWindow(frame: UIScreen.main.bounds)

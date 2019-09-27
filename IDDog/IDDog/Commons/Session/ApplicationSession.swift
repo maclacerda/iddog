@@ -32,15 +32,24 @@ struct ApplicationSession {
   }
   
   static func isValideSession() -> Bool {
+    return loggedUser != nil
+    
+    /// A ideia inicial era criar um mecanismo para "checar" se o token ainda estava valido
+    /// Entretanto, a API retorna sempre a mesma data nos atributos "createdAt" e "updatedAt"
+    /// mesmo que eu faço enumeras tentativas de login
+    /// inviabilizando assim a minha ideia original.
+
+    /*
     guard let user = loggedUser else {
       return false
     }
 
-    let signInDate = user.createdAt
+    let signInDate = user.lastRefresh
     let now = Date()
     let diff = now.diffDays(signInDate)
 
     return diff == 0
+    */
   }
   
 }

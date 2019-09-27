@@ -24,8 +24,6 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if !os(watchOS)
-
 import CoreImage
 
 // Reuse the same CI Context for all CI drawing.
@@ -50,7 +48,7 @@ extension CIImageProcessor {
     /// - Returns: The processed image.
     ///
     /// - Note: See documentation of `ImageProcessor` protocol for more.
-    public func process(item: ImageProcessItem, options: KingfisherParsedOptionsInfo) -> KFCrossPlatformImage? {
+    public func process(item: ImageProcessItem, options: KingfisherParsedOptionsInfo) -> Image? {
         switch item {
         case .image(let image):
             return image.kf.apply(filter)
@@ -71,7 +69,7 @@ public struct Filter {
     }
     
     /// Tint filter which will apply a tint color to images.
-    public static var tint: (KFCrossPlatformColor) -> Filter = {
+    public static var tint: (Color) -> Filter = {
         color in
         Filter {
             input in
@@ -107,7 +105,7 @@ public struct Filter {
     }
 }
 
-extension KingfisherWrapper where Base: KFCrossPlatformImage {
+extension KingfisherWrapper where Base: Image {
 
     /// Applies a `Filter` containing `CIImage` transformer to `self`.
     ///
@@ -117,7 +115,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImage {
     /// - Note:
     ///    Only CG-based images are supported. If any error happens
     ///    during transforming, `self` will be returned.
-    public func apply(_ filter: Filter) -> KFCrossPlatformImage {
+    public func apply(_ filter: Filter) -> Image {
         
         guard let cgImage = cgImage else {
             assertionFailure("[Kingfisher] Tint image only works for CG-based image.")
@@ -137,10 +135,8 @@ extension KingfisherWrapper where Base: KFCrossPlatformImage {
         #if os(macOS)
             return fixedForRetinaPixel(cgImage: result, to: size)
         #else
-            return KFCrossPlatformImage(cgImage: result, scale: base.scale, orientation: base.imageOrientation)
+            return Image(cgImage: result, scale: base.scale, orientation: base.imageOrientation)
         #endif
     }
 
 }
-
-#endif

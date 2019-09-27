@@ -24,9 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if !os(watchOS)
-
-#if canImport(AppKit) && !targetEnvironment(macCatalyst)
+#if canImport(AppKit)
 import AppKit
 public typealias IndicatorView = NSView
 #else
@@ -120,22 +118,11 @@ final class ActivityIndicator: Indicator {
             activityIndicatorView.controlSize = .small
             activityIndicatorView.style = .spinning
         #else
-            let indicatorStyle: UIActivityIndicatorView.Style
-
             #if os(tvOS)
-            if #available(tvOS 13.0, *) {
-                indicatorStyle = UIActivityIndicatorView.Style.large
-            } else {
-                indicatorStyle = UIActivityIndicatorView.Style.white
-            }
+                let indicatorStyle = UIActivityIndicatorView.Style.white
             #else
-            if #available(iOS 13.0, * ) {
-                indicatorStyle = UIActivityIndicatorView.Style.medium
-            } else {
-                indicatorStyle = UIActivityIndicatorView.Style.gray
-            }
+                let indicatorStyle = UIActivityIndicatorView.Style.gray
             #endif
-
             #if swift(>=4.2)
             activityIndicatorView = UIActivityIndicatorView(style: indicatorStyle)
             #else
@@ -145,22 +132,10 @@ final class ActivityIndicator: Indicator {
     }
 }
 
-#if canImport(UIKit)
-extension UIActivityIndicatorView.Style {
-    #if compiler(>=5.1)
-    #else
-    static let large = UIActivityIndicatorView.Style.white
-    #if !os(tvOS)
-    static let medium = UIActivityIndicatorView.Style.gray
-    #endif
-    #endif
-}
-#endif
-
 // MARK: - ImageIndicator
 // Displays an ImageView. Supports gif
 final class ImageIndicator: Indicator {
-    private let animatedImageIndicatorView: KFCrossPlatformImageView
+    private let animatedImageIndicatorView: ImageView
 
     var view: IndicatorView {
         return animatedImageIndicatorView
@@ -181,7 +156,7 @@ final class ImageIndicator: Indicator {
             return nil
         }
 
-        animatedImageIndicatorView = KFCrossPlatformImageView()
+        animatedImageIndicatorView = ImageView()
         animatedImageIndicatorView.image = image
         
         #if os(macOS)
@@ -211,5 +186,3 @@ final class ImageIndicator: Indicator {
         animatedImageIndicatorView.isHidden = true
     }
 }
-
-#endif

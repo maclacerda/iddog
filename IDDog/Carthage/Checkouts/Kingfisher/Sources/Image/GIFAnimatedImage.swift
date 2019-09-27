@@ -71,12 +71,12 @@ public struct ImageCreatingOptions {
 // Represents the decoding for a GIF image. This class extracts frames from an `imageSource`, then
 // hold the images for later use.
 class GIFAnimatedImage {
-    let images: [KFCrossPlatformImage]
+    let images: [Image]
     let duration: TimeInterval
     
     init?(from imageSource: CGImageSource, for info: [String: Any], options: ImageCreatingOptions) {
         let frameCount = CGImageSourceGetCount(imageSource)
-        var images = [KFCrossPlatformImage]()
+        var images = [Image]()
         var gifDuration = 0.0
         
         for i in 0 ..< frameCount {

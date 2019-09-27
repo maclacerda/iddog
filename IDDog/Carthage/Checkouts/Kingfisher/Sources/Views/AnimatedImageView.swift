@@ -31,9 +31,6 @@
 //  The name and characters used in the demo of this software are property of their
 //  respective owners.
 
-#if !os(watchOS)
-
-#if canImport(UIKit)
 import UIKit
 import ImageIO
 
@@ -179,7 +176,7 @@ open class AnimatedImageView: UIImageView {
     }()
     
     // MARK: - Override
-    override open var image: KFCrossPlatformImage? {
+    override open var image: Image? {
         didSet {
             if image != oldValue {
                 reset()
@@ -449,7 +446,7 @@ extension AnimatedImageView {
             self.preloadQueue = preloadQueue
         }
 
-        func frame(at index: Int) -> KFCrossPlatformImage? {
+        func frame(at index: Int) -> Image? {
             return animatedFrames[index]?.image
         }
 
@@ -513,7 +510,7 @@ extension AnimatedImageView {
                 return nil
             }
 
-            let image = KFCrossPlatformImage(cgImage: cgImage)
+            let image = Image(cgImage: cgImage)
             return backgroundDecode ? image.kf.decoded : image
         }
         
@@ -574,13 +571,17 @@ class SafeArray<Element> {
         get {
             lock.lock()
             defer { lock.unlock() }
-            return array.indices ~= index ? array[index] : nil
+            if index >= 0 && index < array.count {
+                return array[index]
+            } else {
+                return nil
+            }
         }
         
-        set {
+        set(newValue) {
             lock.lock()
             defer { lock.unlock() }
-            if let newValue = newValue, array.indices ~= index {
+            if let newValue = newValue, index >= 0 && index < array.count {
                 array[index] = newValue
             }
         }
@@ -610,6 +611,3 @@ class SafeArray<Element> {
         array = []
     }
 }
-#endif
-
-#endif

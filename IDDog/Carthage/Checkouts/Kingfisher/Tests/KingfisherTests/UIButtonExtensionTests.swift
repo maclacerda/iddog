@@ -24,7 +24,6 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if canImport(UIKit)
 import UIKit
 import XCTest
 @testable import Kingfisher
@@ -193,4 +192,3 @@ class UIButtonExtensionTests: XCTestCase {
         XCTAssertEqual(testImage, button.backgroundImage(for: state))
     }
 }
-#endif

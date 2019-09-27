@@ -10,8 +10,10 @@ import UIKit
 
 class ApplicationCoordinator {
   
-  let window: UIWindow
-  let rootViewController: UINavigationController
+  fileprivate let window: UIWindow
+  fileprivate let rootViewController: UINavigationController
+  
+  fileprivate var childCoordinators = [Coordinator]()
   
   fileprivate let loginCoordinator: LoginCoordinator
   fileprivate let feedCoordinator: FeedCoordinator
@@ -29,17 +31,27 @@ class ApplicationCoordinator {
     
     // Start login flow
     loginCoordinator = LoginCoordinator(presenter: rootViewController)
-    
+
     // Start feed flow
     feedCoordinator = FeedCoordinator(presenter: rootViewController)
   }
   
   fileprivate func loginFlow() {
+    loginCoordinator.delegate = self
     loginCoordinator.start()
+
+    childCoordinators.append(loginCoordinator)
   }
 
   fileprivate func feedFlow() {
     feedCoordinator.start()
+    childCoordinators.append(feedCoordinator)
+  }
+  
+  fileprivate func removeChild(coordinator: Coordinator) {
+    self.childCoordinators = self.childCoordinators.filter {
+      $0 !== coordinator
+    }
   }
   
 }
@@ -58,6 +70,15 @@ extension ApplicationCoordinator: Coordinator {
       // Show the login screen
       self.loginFlow()
     }
+  }
+  
+}
+
+extension ApplicationCoordinator: LoginCoordinatorDelegate {
+  
+  func goToFeed() {
+    removeChild(coordinator: loginCoordinator)
+    self.feedFlow()
   }
   
 }

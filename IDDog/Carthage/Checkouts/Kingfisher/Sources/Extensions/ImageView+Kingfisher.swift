@@ -24,7 +24,6 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if !os(watchOS)
 
 #if os(macOS)
 import AppKit
@@ -32,7 +31,7 @@ import AppKit
 import UIKit
 #endif
 
-extension KingfisherWrapper where Base: KFCrossPlatformImageView {
+extension KingfisherWrapper where Base: ImageView {
 
     // MARK: Setting Image
 
@@ -260,7 +259,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
         }
     }
 
-    private func makeTransition(image: KFCrossPlatformImage, transition: ImageTransition, done: @escaping () -> Void) {
+    private func makeTransition(image: Image, transition: ImageTransition, done: @escaping () -> Void) {
         #if !os(macOS)
         // Force hiding the indicator without transition first.
         UIView.transition(
@@ -296,14 +295,12 @@ private var indicatorTypeKey: Void?
 private var placeholderKey: Void?
 private var imageTaskKey: Void?
 
-extension KingfisherWrapper where Base: KFCrossPlatformImageView {
+extension KingfisherWrapper where Base: ImageView {
 
     // MARK: Properties
     public private(set) var taskIdentifier: Source.Identifier.Value? {
         get {
             let box: Box<Source.Identifier.Value>? = getAssociatedObject(base, &taskIdentifierKey)
-            defer { objc_sync_exit(self) }
-            objc_sync_enter(self)
             return box?.value
         }
         set {
@@ -393,11 +390,11 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
 }
 
 
-@objc extension KFCrossPlatformImageView {
+@objc extension ImageView {
     func shouldPreloadAllAnimation() -> Bool { return true }
 }
 
-extension KingfisherWrapper where Base: KFCrossPlatformImageView {
+extension KingfisherWrapper where Base: ImageView {
     /// Gets the image URL bound to this image view.
     @available(*, deprecated, message: "Use `taskIdentifier` instead to identify a setting task.")
     public private(set) var webURL: URL? {
@@ -405,5 +402,3 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
         set { }
     }
 }
-
-#endif

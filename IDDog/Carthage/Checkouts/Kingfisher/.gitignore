@@ -17,7 +17,6 @@ DerivedData
 *.xcuserstate
 *.hmap
 *.ipa
-.swiftpm
 
 # AppCode
 .idea

@@ -12,12 +12,12 @@ struct User: Codable {
   
   let id: String
   let token: String
-  let createdAt: Date
+  let lastRefresh: Date
   
   fileprivate enum CodingKeys: String, CodingKey {
     case id = "_id"
     case token
-    case createdAt
+    case lastRefresh = "updatedAt"
   }
   
 }

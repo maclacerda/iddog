@@ -16,6 +16,8 @@ class LoginCoordinator {
   
   private let presenter: UINavigationController
   private var loginController: LoginViewController
+  
+  weak var delegate: LoginCoordinatorDelegate?
 
   init(presenter: UINavigationController) {
     self.presenter = presenter
@@ -28,18 +30,9 @@ extension LoginCoordinator: Coordinator {
   
   func start() {
     loginController.title = "login".localized()
-    loginController.delegate = self
+    loginController.delegate = delegate
     
     presenter.pushViewController(loginController, animated: true)
-  }
-  
-}
-
-extension LoginCoordinator: LoginCoordinatorDelegate {
-  
-  func goToFeed() {
-    let feedCoordinator = FeedCoordinator(presenter: presenter)
-    feedCoordinator.start()
   }
   
 }

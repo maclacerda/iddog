@@ -34,7 +34,7 @@ import UIKit
 public struct ImageLoadingResult {
 
     /// The downloaded image.
-    public let image: KFCrossPlatformImage
+    public let image: Image
 
     /// Original URL of the image request.
     public let url: URL?

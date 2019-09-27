@@ -64,14 +64,8 @@ class ProgressiveJPEGViewController: UIViewController {
                 self.progressLabel.text = "\(receivedSize) / \(totalSize)"
             },
             completionHandler: { result in
-                do {
-                    let value = try result.get()
-                    print(value)
-                    print("Finished")
-                    
-                } catch {
-                    self.progressLabel.text = error.localizedDescription
-                }
+                print(result)
+                print("Finished")
             }
         )
     }

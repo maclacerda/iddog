@@ -1,24 +1,16 @@
-// swift-tools-version:5.1
+// swift-tools-version:4.2
 import PackageDescription
 
 let package = Package(
     name: "Kingfisher",
-    platforms: [.iOS(.v10), .macOS(.v10_12), .tvOS(.v10), .watchOS(.v3)],
+    // platforms: [.iOS("10.0"), .macOS("10.12"), tvOS("10.0"), .watchOS("3.0")],
     products: [
-        .library(name: "Kingfisher", targets: ["Kingfisher"]),
-        .library(name: "KingfisherSwiftUI", targets: ["KingfisherSwiftUI"])
+        .library(name: "Kingfisher", targets: ["Kingfisher"])
     ],
     targets: [
         .target(
             name: "Kingfisher",
-            path: "Sources",
-            exclude: ["SwiftUI"]
-        ),
-        .target(
-            name: "KingfisherSwiftUI",
-            dependencies: ["Kingfisher"],
-            path: "Sources",
-            sources: ["SwiftUI"]
+            path: "Sources"
         )
     ]
 )
