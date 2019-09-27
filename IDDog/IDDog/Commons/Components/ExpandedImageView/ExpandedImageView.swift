@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
+import SDWebImage
 
 class ExpandedImageView: UIView {
   
@@ -65,7 +65,7 @@ class ExpandedImageView: UIView {
   
   func show(with image: String) {
     guard let url = URL(string: image) else { return }
-    imageView.kf.setImage(with: url)
+    imageView.sd_setImage(with: url)
   }
   
 }

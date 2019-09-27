@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
+import SDWebImage
 
 class FeedCollectionViewCell: UICollectionViewCell {
   
@@ -22,7 +22,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
 
   func setup(with item: String) {
     guard let url = URL(string: item) else { return }
-    imageView.kf.setImage(with: url)
+    imageView.sd_setImage(with: url)
   }
   
 }

@@ -1,4 +1,4 @@
 github "Alamofire/Alamofire" "4.9.0"
 github "Otbivnoe/CodableAlamofire" "1.1.1"
+github "SDWebImage/SDWebImage" "5.2.0"
 github "evgenyneu/keychain-swift" "16.0.1"
-github "onevcat/Kingfisher" "5.7.1"

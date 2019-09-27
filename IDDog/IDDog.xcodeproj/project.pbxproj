@@ -17,8 +17,6 @@
 		0F2E7B3E233BA0EF00FBD3D3 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E7B3C233BA0EF00FBD3D3 /* ApplicationCoordinator.swift */; };
 		0F2E7B48233BA54500FBD3D3 /* CodableAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2E7B45233BA54500FBD3D3 /* CodableAlamofire.framework */; };
 		0F2E7B49233BA54500FBD3D3 /* CodableAlamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2E7B45233BA54500FBD3D3 /* CodableAlamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0F2E7B4A233BA54500FBD3D3 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2E7B46233BA54500FBD3D3 /* Kingfisher.framework */; };
-		0F2E7B4B233BA54500FBD3D3 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2E7B46233BA54500FBD3D3 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0F2E7B4C233BA54500FBD3D3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2E7B47233BA54500FBD3D3 /* Alamofire.framework */; };
 		0F2E7B4D233BA54500FBD3D3 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2E7B47233BA54500FBD3D3 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0F2E7B52233BA5B300FBD3D3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E7B51233BA5B300FBD3D3 /* BaseViewController.swift */; };
@@ -95,6 +93,8 @@
 		0F85B9D8233D7E5E00A94CFE /* Date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85B9D6233D7E5E00A94CFE /* Date+extensions.swift */; };
 		0F85B9DA233E317D00A94CFE /* UserDefaults+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85B9D9233E317D00A94CFE /* UserDefaults+extensions.swift */; };
 		0F85B9DB233E317D00A94CFE /* UserDefaults+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F85B9D9233E317D00A94CFE /* UserDefaults+extensions.swift */; };
+		0F85B9E0233E465800A94CFE /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F85B9DF233E465800A94CFE /* SDWebImage.framework */; };
+		0F85B9E1233E465800A94CFE /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F85B9DF233E465800A94CFE /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,8 +114,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0F85B9E1233E465800A94CFE /* SDWebImage.framework in Embed Frameworks */,
 				0F85B9D5233D2E9900A94CFE /* KeychainSwift.framework in Embed Frameworks */,
-				0F2E7B4B233BA54500FBD3D3 /* Kingfisher.framework in Embed Frameworks */,
 				0F2E7B4D233BA54500FBD3D3 /* Alamofire.framework in Embed Frameworks */,
 				0F2E7B49233BA54500FBD3D3 /* CodableAlamofire.framework in Embed Frameworks */,
 			);
@@ -175,6 +175,7 @@
 		0F85B9D3233D2E9900A94CFE /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
 		0F85B9D6233D7E5E00A94CFE /* Date+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extensions.swift"; sourceTree = "<group>"; };
 		0F85B9D9233E317D00A94CFE /* UserDefaults+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+extensions.swift"; sourceTree = "<group>"; };
+		0F85B9DF233E465800A94CFE /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,8 +183,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F85B9E0233E465800A94CFE /* SDWebImage.framework in Frameworks */,
 				0F85B9D4233D2E9900A94CFE /* KeychainSwift.framework in Frameworks */,
-				0F2E7B4A233BA54500FBD3D3 /* Kingfisher.framework in Frameworks */,
 				0F2E7B4C233BA54500FBD3D3 /* Alamofire.framework in Frameworks */,
 				0F2E7B48233BA54500FBD3D3 /* CodableAlamofire.framework in Frameworks */,
 			);
@@ -269,6 +270,7 @@
 		0F2E7B44233BA54500FBD3D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0F85B9DF233E465800A94CFE /* SDWebImage.framework */,
 				0F85B9D3233D2E9900A94CFE /* KeychainSwift.framework */,
 				0F2E7B47233BA54500FBD3D3 /* Alamofire.framework */,
 				0F2E7B45233BA54500FBD3D3 /* CodableAlamofire.framework */,
@@ -629,7 +631,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CodableAlamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Kingfisher.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/KeychainSwift.framework",
 			);
 			name = Carthage;
@@ -868,7 +870,6 @@
 		0F2E7B2F233AE5DB00FBD3D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.0;
@@ -877,7 +878,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = IDDog/App/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -892,7 +893,6 @@
 		0F2E7B30233AE5DB00FBD3D3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.0;
@@ -901,7 +901,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = IDDog/App/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
