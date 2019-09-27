@@ -17,6 +17,5 @@ jobs:
         run: |
           cd IDDog
           carthage update --platform iOS --no-use-binaries
-          xcodebuild clean build -project IDDog.xcodeproj -scheme IDDog -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
         env: 
          destination: ${{ matrix.destination }}
