@@ -2,10 +2,10 @@ on:
   push:
     branches:    
       - master
-name: Build
+name: CI
 jobs:
   test:
-    name: Build
+    name: CI
     runs-on: macOS-latest
     strategy:
         matrix:
@@ -13,8 +13,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-      - name: Build
+      - name: Carthage, Build and Test
         run: |
-          xcodebuild clean build -project IDDog.xcodeproj -scheme IDDog -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          carthage update --platform iOS
+          xcodebuild clean test -project IDDog.xcodeproj -scheme IDDog -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
         env: 
          destination: ${{ matrix.destination }}
