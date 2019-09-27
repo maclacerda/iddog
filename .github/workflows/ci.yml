@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@master
       - name: Carthage, Build and Test
         run: |
+          cd IDDog
           carthage update --platform iOS
           xcodebuild clean test -project IDDog.xcodeproj -scheme IDDog -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
         env: 
