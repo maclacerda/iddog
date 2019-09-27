@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  IDDog
+
+  Created by Marcos Lacerda on 25/09/19.
+  Copyright © 2019 Marcos Lacerda. All rights reserved.
+*/
+
+"login" = "Acesso";
+"signin" = "Entrar";
+"user-credentials-invalid" = "Por favor, entre com um e-mail válido";
+"close" = "Fechar";
+"try-again" = "Repetir";
